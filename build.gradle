@@ -1,0 +1,43 @@
+apply plugin: 'cpp'
+
+wrapper {
+    gradleVersion = "4.8"
+}
+
+model {
+    toolChains {
+        gcc(Gcc) {
+            eachPlatform {
+                cppCompiler.withArguments {
+                    args ->
+                    args << '-std=c++14'
+                    args << '-g'
+                }
+
+                linker.withArguments {
+                    args ->
+                    args << "-lglfw"
+                    args << "-ldl"
+                }
+            }
+        }
+    }
+
+    components {
+        vkcompute_test (NativeExecutableSpec) {
+            sources {
+                cpp {
+                    source {
+                        srcDir "src/main/cpp"
+                        include "**/*.cpp", "**/*.c"
+                    }
+
+                    exportedHeaders {
+                        srcDir "src/main/include"
+                        include "**/*.hpp"
+                    }
+                }
+            }
+        }
+    }
+}
