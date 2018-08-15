@@ -7,4 +7,6 @@ Uses [Volk](https://github.com/zeux/volk) as a Vulkan Loader
 * [LunarG SDK](https://vulkan.lunarg.com/)
 
 # How to compile shaders
+``` bash
 $ glslc -c src/main/glsl/square.comp -o square.comp.spv
+```
