@@ -340,8 +340,9 @@ context::context() {
 
     // using the first Compute Family Id; can modify to select multiple...
     auto queueCIs = std::vector<VkDeviceQueueCreateInfo>();
+    auto queuePriorities = std::vector<float> ();
+
     {
-        auto queuePriorities = std::vector<float> ();
         queuePriorities.push_back(1.0F);
 
         VkDeviceQueueCreateInfo queueCI {};
