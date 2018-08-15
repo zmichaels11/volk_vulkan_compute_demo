@@ -1,0 +1,16 @@
+#version 450 core
+
+layout (binding = 0, std140) readonly buffer Inputs {
+    float uInputs[];
+};
+
+layout (binding = 1, std140) writeonly buffer Outputs {
+    float uOutputs[];
+};
+
+layout (local_size_x = 32) in;
+void main() {
+    uint id = gl_GlobalInvocationID.x;
+
+    uOutputs[id] = uInputs[id] * uInputs[id];
+}
