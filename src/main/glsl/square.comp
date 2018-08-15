@@ -1,11 +1,11 @@
 #version 450 core
 
 layout (binding = 0, std140) readonly buffer Inputs {
-    float uInputs[];
+    vec4 uInputs[];
 };
 
 layout (binding = 1, std140) writeonly buffer Outputs {
-    float uOutputs[];
+    vec4 uOutputs[];
 };
 
 layout (local_size_x = 32) in;
