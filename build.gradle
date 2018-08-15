@@ -16,7 +16,6 @@ model {
 
                 linker.withArguments {
                     args ->
-                    args << "-lglfw"
                     args << "-ldl"
                 }
             }
