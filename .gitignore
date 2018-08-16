@@ -66,3 +66,7 @@ gradle-app.setting
 
 
 \.vscode/settings\.json
+
+\.project
+
+\.settings/org\.eclipse\.buildship\.core\.prefs

@@ -5,23 +5,6 @@ wrapper {
 }
 
 model {
-    toolChains {
-        gcc(Gcc) {
-            eachPlatform {
-                cppCompiler.withArguments {
-                    args ->
-                    args << '-std=c++14'
-                    args << '-g'
-                }
-
-                linker.withArguments {
-                    args ->
-                    args << "-ldl"
-                }
-            }
-        }
-    }
-
     components {
         vkcompute_test (NativeExecutableSpec) {
             sources {
@@ -35,6 +18,18 @@ model {
                         srcDir "src/main/include"
                         include "**/*.hpp"
                     }
+                }
+            }
+
+            binaries.all {
+                if (toolChain instanceof Gcc || toolChain instanceof Clang) {
+                    cppCompiler.args << "-std=c++14"
+                } else if (toolChain instanceof VisualCpp) {
+                    cppCompiler.args << "/std:c++14"
+                }
+
+                if (targetPlatform.operatingSystem.linux) {
+                    linker.args << "-ldl"
                 }
             }
         }
