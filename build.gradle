@@ -1,7 +1,7 @@
 apply plugin: 'cpp'
 
 wrapper {
-    gradleVersion = "4.8"
+    gradleVersion = "4.10.2"
 }
 
 model {
@@ -22,13 +22,10 @@ model {
             }
 
             binaries.all {
-                if (toolChain instanceof Gcc || toolChain instanceof Clang) {
-                    cppCompiler.args << "-std=c++14"
-                } else if (toolChain instanceof VisualCpp) {
+                if (toolChain instanceof VisualCpp) {
                     cppCompiler.args << "/std:c++14"
-                }
-
-                if (targetPlatform.operatingSystem.linux) {
+                } else {
+                    cppCompiler.args << "-std=c++14"
                     linker.args << "-ldl"
                 }
             }
